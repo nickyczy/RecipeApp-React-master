@@ -1,0 +1,57 @@
+/* .searchicon {
+	background-image: url(../../assets/img/pic1.jpg);
+	background-repeat: no-repeat;
+
+	background-size: 30px;
+	width: 100%;
+	font-size: 16px;
+	padding: 12px 20px 12px 40px;
+	border: 1px solid #ddd;
+	margin-bottom: 12px;
+} */
+
+.container {
+	background: url("../../assets/img/pic6.jpg") center no-repeat;
+
+	background-size: cover;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	min-height: 70vh;
+}
+
+.form form {
+	display: flex;
+}
+
+.form h1 {
+	/* background-color: rgba(255 255 255 / 0.5); */
+	color: rgba(0 0 0);
+	text-align: center;
+	margin-bottom: 2rem;
+	font-size: 3rem;
+}
+
+.form input {
+	outline: none;
+	cursor: pointer;
+	font-size: 16px;
+	padding: 1rem 15rem;
+	border: none;
+}
+
+.form button {
+	outline: none;
+	border: none;
+	padding: 1rem;
+	cursor: pointer;
+}
+
+.icon {
+	font-size: 16px;
+	opacity: 10%;
+}
+
+.form form:hover .icon {
+	opacity: 70%;
+}
