@@ -1,9 +1,10 @@
 import { useState } from "react";
 import "./App.css";
 import Layout from "./components/Layout/Layout";
-import AvailableRecipes from "./components/Recipes/AvailableRecipes";
+import PopularRecipes from "./components/Recipes/PopularRecipes";
 import SearchBar from "./components/Searchbar/SearchBar";
 import SearchForm from "./components/Searchbar/SearchForm";
+import { BrowserRouter } from "react-router-dom";
 
 const App = () => {
 	const [searchIsShown, setSearchIsShown] = useState(false);
@@ -17,11 +18,13 @@ const App = () => {
 	};
 
 	return (
-		<Layout>
-			{searchIsShown && <SearchForm onClose={hideSearchBarHandler} />}
-			<SearchBar onShowSearchBar={showSearchBarHandler} />
-			<AvailableRecipes />
-		</Layout>
+		<BrowserRouter>
+			<Layout>
+				{searchIsShown && <SearchForm onClose={hideSearchBarHandler} />}
+				<SearchBar onShowSearchBar={showSearchBarHandler} />
+				<PopularRecipes />
+			</Layout>
+		</BrowserRouter>
 	);
 };
 

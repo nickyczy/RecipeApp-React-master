@@ -29,6 +29,10 @@ header {
 	color: rgb(255, 115, 105);
 }
 
+li,
+li a {
+	text-decoration: none;
+}
 #navbar li:hover::after,
 #navbar li.active::after {
 	content: "";
