@@ -12,7 +12,7 @@ const Nav = () => {
 
 	const multipleClasses = classes.navbar + " " + classes.active;
 	let activeStyle = {
-		color: "#fff",
+		color: "black",
 	};
 
 	return (
@@ -24,23 +24,44 @@ const Nav = () => {
 					className={clicked ? multipleClasses : classes.navbar}
 				>
 					<li className={classes.active}>
-						<NavLink to={"/home"}>Home</NavLink>
+						<NavLink
+							to={"/"}
+							style={({ isActive }) => (isActive ? activeStyle : undefined)}
+						>
+							Home
+						</NavLink>
 					</li>
 					<li>
 						<NavLink
+							to={"/recipes"}
 							style={({ isActive }) => (isActive ? activeStyle : undefined)}
 						>
 							Recipes
 						</NavLink>
 					</li>
 					<li>
-						<NavLink>Contact</NavLink>
+						<NavLink
+							to={"/contact"}
+							style={({ isActive }) => (isActive ? activeStyle : undefined)}
+						>
+							Contact
+						</NavLink>
 					</li>
 					<li>
-						<NavLink>Products</NavLink>
+						<NavLink
+							to={"/products"}
+							style={({ isActive }) => (isActive ? activeStyle : undefined)}
+						>
+							Products
+						</NavLink>
 					</li>
 					<li>
-						<NavLink>Sign in</NavLink>
+						<NavLink
+							to={"/signin"}
+							style={({ isActive }) => (isActive ? activeStyle : undefined)}
+						>
+							Sign in
+						</NavLink>
 					</li>
 					<button>Logout</button>
 				</ul>
