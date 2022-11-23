@@ -37,7 +37,7 @@ const Nav = () => {
 						<NavLink
 							to={"/"}
 							className={({ isActive }) =>
-								isActive ? classes.navlinkActive : classes.navlinkInactive
+								isActive ? classes.navlinkActive : classes.adnavlinkInactive
 							}
 						>
 							Home
