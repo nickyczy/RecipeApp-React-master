@@ -56,11 +56,11 @@ const PopularRecipes = () => {
 				<h1>Popular Recipes</h1>
 				<Splide
 					options={{
-						perPage: 4,
+						perPage: 5,
 						arrows: false,
 						pagination: false,
 						drag: "free",
-						gap: "5rem",
+						gap: "2rem",
 					}}
 				>
 					{popularList}

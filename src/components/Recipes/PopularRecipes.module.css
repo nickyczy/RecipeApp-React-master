@@ -25,6 +25,9 @@
 	height: 100%;
 	object-fit: cover;
 }
+.recipes h1 {
+	font-size: 2rem;
+}
 
 .recipe p {
 	position: absolute;

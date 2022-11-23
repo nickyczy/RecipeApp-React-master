@@ -13,11 +13,21 @@ const Nav = () => {
 	const multipleClasses = classes.navbar + " " + classes.active;
 	let activeStyle = {
 		color: "black",
+		textDecoration: "none",
 	};
 
 	return (
 		<header>
-			<div className={classes.logo}>Logo</div>
+			<div className={classes.logo}>
+				<NavLink
+					to={"/"}
+					className={({ isActive }) =>
+						isActive ? classes.navlinkActive : classes.navlinkInactive
+					}
+				>
+					Food Diary
+				</NavLink>
+			</div>
 			<nav>
 				<ul
 					id={classes.navbar}
@@ -26,7 +36,9 @@ const Nav = () => {
 					<li className={classes.active}>
 						<NavLink
 							to={"/"}
-							style={({ isActive }) => (isActive ? activeStyle : undefined)}
+							className={({ isActive }) =>
+								isActive ? classes.navlinkActive : classes.navlinkInactive
+							}
 						>
 							Home
 						</NavLink>
@@ -34,7 +46,9 @@ const Nav = () => {
 					<li>
 						<NavLink
 							to={"/recipes"}
-							style={({ isActive }) => (isActive ? activeStyle : undefined)}
+							className={({ isActive }) =>
+								isActive ? classes.navlinkActive : classes.navlinkInactive
+							}
 						>
 							Recipes
 						</NavLink>
@@ -42,7 +56,9 @@ const Nav = () => {
 					<li>
 						<NavLink
 							to={"/contact"}
-							style={({ isActive }) => (isActive ? activeStyle : undefined)}
+							className={({ isActive }) =>
+								isActive ? classes.navlinkActive : classes.navlinkInactive
+							}
 						>
 							Contact
 						</NavLink>
@@ -50,7 +66,9 @@ const Nav = () => {
 					<li>
 						<NavLink
 							to={"/products"}
-							style={({ isActive }) => (isActive ? activeStyle : undefined)}
+							className={({ isActive }) =>
+								isActive ? classes.navlinkActive : classes.navlinkInactive
+							}
 						>
 							Products
 						</NavLink>
@@ -58,7 +76,9 @@ const Nav = () => {
 					<li>
 						<NavLink
 							to={"/signin"}
-							style={({ isActive }) => (isActive ? activeStyle : undefined)}
+							className={({ isActive }) =>
+								isActive ? classes.navlinkActive : classes.navlinkInactive
+							}
 						>
 							Sign in
 						</NavLink>
