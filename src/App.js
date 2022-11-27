@@ -1,30 +1,24 @@
-import { useState } from "react";
+import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import Layout from "./components/Layout/Layout";
-import PopularRecipes from "./components/Recipes/PopularRecipes";
-import SearchBar from "./components/Searchbar/SearchBar";
-import SearchForm from "./components/Searchbar/SearchForm";
-import { BrowserRouter } from "react-router-dom";
+
+import Contact from "./pages/Contact";
+import Home from "./pages/Home";
+import Login from "./pages/Login";
+import Recipe from "./pages/Recipe";
+import Searched from "./pages/Searched";
 
 const App = () => {
-	const [searchIsShown, setSearchIsShown] = useState(false);
-
-	const showSearchBarHandler = () => {
-		setSearchIsShown(true);
-	};
-
-	const hideSearchBarHandler = () => {
-		setSearchIsShown(false);
-	};
-
 	return (
-		<BrowserRouter>
-			<Layout>
-				{searchIsShown && <SearchForm onClose={hideSearchBarHandler} />}
-				<SearchBar onShowSearchBar={showSearchBarHandler} />
-				<PopularRecipes />
-			</Layout>
-		</BrowserRouter>
+		<Layout>
+			<Routes>
+				<Route path="/" element={<Home />} />
+				<Route path="/recipes" element={<Recipe />} />
+				<Route path="/contact" element={<Contact />} />
+				<Route path="/signin" element={<Login />} />
+				<Route path="/searched/:search" element={<Searched />} />
+			</Routes>
+		</Layout>
 	);
 };
 

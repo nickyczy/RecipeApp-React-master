@@ -6,15 +6,7 @@ import { NavLink } from "react-router-dom";
 const Nav = () => {
 	const [clicked, setClicked] = useState(false);
 
-	const iconClickedHandler = () => {
-		setClicked(!clicked);
-	};
-
 	const multipleClasses = classes.navbar + " " + classes.active;
-	let activeStyle = {
-		color: "black",
-		textDecoration: "none",
-	};
 
 	return (
 		<header>
@@ -35,7 +27,7 @@ const Nav = () => {
 				>
 					<li className={classes.active}>
 						<NavLink
-							to={"/"}
+							to="/"
 							className={({ isActive }) =>
 								isActive ? classes.navlinkActive : classes.adnavlinkInactive
 							}
@@ -45,7 +37,7 @@ const Nav = () => {
 					</li>
 					<li>
 						<NavLink
-							to={"/recipes"}
+							to="/recipes"
 							className={({ isActive }) =>
 								isActive ? classes.navlinkActive : classes.navlinkInactive
 							}
@@ -63,16 +55,7 @@ const Nav = () => {
 							Contact
 						</NavLink>
 					</li>
-					<li>
-						<NavLink
-							to={"/products"}
-							className={({ isActive }) =>
-								isActive ? classes.navlinkActive : classes.navlinkInactive
-							}
-						>
-							Products
-						</NavLink>
-					</li>
+
 					<li>
 						<NavLink
 							to={"/signin"}
