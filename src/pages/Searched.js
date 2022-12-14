@@ -1,63 +1,130 @@
-import { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
+import SimilarRecipes from "../components/Recipes/SimilarRecipes";
+import Search from "../components/Searchbar/Search";
 
 const Searched = () => {
-	const [searchedRecipe, setSearchedRecipe] = useState([]);
 	let params = useParams();
+	const [details, setDetails] = useState({});
+	const [activeTab, setActiveTab] = useState("");
 
-	const getSearched = async (name) => {
-		const api = await fetch(
-			`https://api.spoonacular.com/recipes/complexSearch?apiKey=63748567f146459bac586b2e78fbc096&number=9&query=${name}`
-		);
-
-		const recipes = await api.json();
-		setSearchedRecipe(recipes.results);
+	const activeTabHandler = (e) => {
+		setActiveTab(e.target.innerText);
 	};
 
 	useEffect(() => {
-		getSearched(params.search);
-	}, [params.search]);
+		const fetchDetails = async () => {
+			const data = await fetch(
+				`https://api.spoonacular.com/recipes/${params.name}/information?apiKey=63748567f146459bac586b2e78fbc096`
+			);
 
-	const searchedResults = searchedRecipe.map((item) => {
-		return (
-			<Card key={item.id}>
-				<img src={item.image} alt="" />
-				<h4>{item.title}</h4>
-			</Card>
-		);
-	});
+			const detailData = await data.json();
+			setDetails(detailData);
+		};
+		fetchDetails();
+	}, [params.name]);
+	console.log(details);
 
 	return (
-		<Container>
-			<h2>Search Results :{params.search}</h2>
-			<Grid>{searchedResults}</Grid>
-		</Container>
+		<div>
+			<DetailWrapper>
+				<div>
+					<h1>{details.title}</h1>
+					<img src={details.image} alt="" />
+				</div>
+				<Info>
+					<Button
+						className={activeTab === "Summary" ? "active" : ""}
+						onClick={activeTabHandler}
+					>
+						Summary
+					</Button>
+					<Button
+						className={activeTab === "Instructions" ? "active" : ""}
+						onClick={activeTabHandler}
+					>
+						Instructions
+					</Button>
+					<Button
+						className={activeTab === "Ingredients" ? "active" : ""}
+						onClick={activeTabHandler}
+					>
+						Ingredients
+					</Button>
+					{activeTab === "Summary" && (
+						<Container>
+							<h3 dangerouslySetInnerHTML={{ __html: details.summary }}></h3>
+						</Container>
+					)}
+					{activeTab === "Instructions" && (
+						<Container>
+							<h3
+								dangerouslySetInnerHTML={{ __html: details.instructions }}
+							></h3>
+						</Container>
+					)}
+					{activeTab === "Ingredients" && (
+						<ul>
+							{details.extendedIngredients.map((ingredient) => (
+								<li key={ingredient.id}>{ingredient.original}</li>
+							))}
+						</ul>
+					)}
+				</Info>
+			</DetailWrapper>
+			<SimilarRecipes />
+		</div>
 	);
 };
+
+const DetailWrapper = styled.div`
+	margin-top: 10rem;
+
+	display: flex;
+	justify-content: center;
+
+	.active {
+		background: linear-gradient(35deg, #494949, #313131);
+		color: white;
+	}
+	h1 {
+		max-width: 600px;
+		word-wrap: break-word;
+
+		margin-bottom: 2rem;
+	}
+	h3 {
+		font-weight: normal;
+		max-width: 600px;
+	}
+
+	li {
+		font-size: 1.2rem;
+		line-height: 2.5rem;
+	}
+
+	ul {
+		margin-top: 2rem;
+	}
+`;
+
+const Button = styled.button`
+	padding: 1rem 2rem;
+	color: #313131;
+	background: white;
+	border: 2px solid black;
+	margin-right: 2rem;
+	font-weight: 600;
+`;
+
+const Info = styled.div`
+	margin: 0 7rem;
+	width: 40%;
+`;
+
 const Container = styled.div`
-	padding: 2rem;
+	padding: 2rem 0;
 `;
 
-const Grid = styled.div`
-	padding: 2rem;
-	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
-	grid-gap: 2rem;
-`;
-
-const Card = styled.div`
-	img {
-		width: 100%;
-		border-radius: 2rem;
-	}
-	a {
-		text-decoration: none;
-	}
-	h4 {
-		font-size: 1.25rem;
-		text-align: center;
-		padding: 1rem;
-	}
-`;
 export default Searched;

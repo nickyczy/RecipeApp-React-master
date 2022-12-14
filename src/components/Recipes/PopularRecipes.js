@@ -21,7 +21,7 @@ const PopularRecipes = () => {
 			setPopular(JSON.parse(check));
 		} else {
 			const api = await fetch(
-				"https://api.spoonacular.com/recipes/random?apiKey=63748567f146459bac586b2e78fbc096&number=9"
+				"https://api.spoonacular.com/recipes/random?apiKey=63748567f146459bac586b2e78fbc096&number=10"
 			);
 			// if (!api.ok) {
 			// 	throw new Error("Something went wrong!");

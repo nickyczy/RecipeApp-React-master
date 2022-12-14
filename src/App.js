@@ -1,6 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import Layout from "./components/Layout/Layout";
+import Search from "./components/Searchbar/Search";
 
 import Contact from "./pages/Contact";
 import Home from "./pages/Home";
@@ -16,7 +17,10 @@ const App = () => {
 				<Route path="/recipe/:name" element={<Recipe />} />
 				<Route path="/contact" element={<Contact />} />
 				<Route path="/signin" element={<Login />} />
-				<Route path="/searched/:search" element={<Searched />} />
+				<Route path="/searched">
+					<Route path=":search" element={<Search />} />
+					<Route path=":search/:name" element={<Searched />} />
+				</Route>
 			</Routes>
 		</Layout>
 	);
