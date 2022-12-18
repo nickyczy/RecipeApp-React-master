@@ -5,6 +5,7 @@ import { NavLink } from "react-router-dom";
 
 const Nav = () => {
 	const [clicked, setClicked] = useState(false);
+	const [isLogin, setIsLogin] = useState(true);
 
 	const multipleClasses = classes.navbar + " " + classes.active;
 
@@ -55,18 +56,20 @@ const Nav = () => {
 							Contact
 						</NavLink>
 					</li>
-
-					<li>
-						<NavLink
-							to={"/signin"}
-							className={({ isActive }) =>
-								isActive ? classes.navlinkActive : classes.navlinkInactive
-							}
-						>
-							Sign in
-						</NavLink>
-					</li>
-					<button>Logout</button>
+					{isLogin === true ? (
+						<li>
+							<NavLink
+								to={"/signin"}
+								className={({ isActive }) =>
+									isActive ? classes.navlinkActive : classes.navlinkInactive
+								}
+							>
+								Sign in
+							</NavLink>
+						</li>
+					) : (
+						<button>Logout</button>
+					)}
 				</ul>
 			</nav>
 			<div className={classes.mobile}>
